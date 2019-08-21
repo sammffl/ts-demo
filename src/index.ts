@@ -1,4 +1,4 @@
-import './datatype'
+import './01_datatype'
 
 let hello: string = 'hello Typescript';
 
