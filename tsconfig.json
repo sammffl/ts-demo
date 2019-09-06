@@ -6,7 +6,7 @@
     "src/*"
   ],
   "exclude": [
-    "src/*",
+    "src/*.ts",
     "src/namespace",
     "src/es6",
     "src/node",
