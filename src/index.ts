@@ -1,4 +1,6 @@
-import './01_datatype'
+// import './01_datatype'
+
+import './es6/c'
 
 let hello: string = 'hello Typescript';
 

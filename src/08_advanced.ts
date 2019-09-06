@@ -143,3 +143,210 @@ let logT2 = <U>(y: U): U => {
 }
 
 logT1 = logT2
+
+
+/**
+ * 类型保护
+*/
+
+enum Type { Strong, Week }
+
+class Java {
+    helloJava() {
+        console.log('Hello java')
+    }
+    java: any
+}
+
+class Javascript {
+    helloJavascript() {
+        console.log('Hello Javascript')
+    }
+    javascript: any
+}
+
+function isJava(lang: Java | Javascript): lang is Java {
+    return (lang as Java).helloJava !== undefined
+}
+
+function getLanguage(type: Type, x?: string | number) {
+    let lang = type === Type.Strong ? new Java() : new Javascript()
+    // if ((lang as Java).helloJava) {
+    //     (lang as Java).helloJava()
+    // } else {
+    //     (lang as Javascript).helloJavascript()
+    // }
+
+    // instanceof
+    // if (lang instanceof Java) {
+    //     lang.helloJava()
+    // } else {
+    //     lang.helloJavascript()
+    // }
+
+    // in 
+    // if ('java' in lang) {
+    //     lang.helloJava()
+    // } else {
+    //     lang.helloJavascript()
+    // }
+
+    // typeof 
+    // if (typeof x === 'string') {
+
+    // } else {
+
+    // }
+
+    if (isJava(lang)) {
+        lang.helloJava()
+    } else {
+        lang.helloJavascript()
+    }
+
+    return lang
+}
+
+getLanguage(Type.Strong)
+
+// 交叉类型
+interface DogInterface {
+    run(): void
+}
+
+interface CatInterface {
+    jump(): void
+}
+let pet: DogInterface & CatInterface = {
+    run() { },
+    jump() { }
+}
+
+class Dog1 implements DogInterface {
+    run() { }
+    eat() { }
+}
+class Cat implements CatInterface {
+    jump() { }
+    eat() { }
+}
+
+enum Master { Boy, Girl }
+function getPet(master: Master) {
+    let pet = master === Master.Boy ? new Dog1() : new Cat()
+    pet.eat()
+
+    return pet
+}
+
+
+// 两种类型的共有属性
+interface Square {
+    kind: 'square';
+    size: number;
+}
+interface Rectangle {
+    kind: 'rectangle'
+    width: number;
+    height: number;
+}
+interface Circle {
+    kind: 'circle',
+    r: number
+}
+type Shape = Square | Rectangle | Circle
+function area(s: Shape) {
+    switch (s.kind) {
+        case "square":
+            return s.size * s.size
+        case "rectangle":
+            return s.height * s.width
+        case "circle":
+            return Math.PI * s.r * s.r
+        default: // 检验全部
+            return ((e: never) => { throw new Error(e) })(s)
+    }
+}
+
+console.log(area({ kind: 'circle', r: 1 }))
+
+
+// 索引类型
+let obj1 = {
+    a: 1,
+    b: 2,
+    c: 3
+}
+
+function getValues<T, k extends keyof T>(obj: any, keys: string[]): T[k][] {
+    return keys.map(key => obj[key])
+}
+
+console.log(obj1, [a, b]) // 1 2
+console.log(obj, ['e', 'f'])
+
+// keyof T
+interface Obj {
+    a: number;
+    b: string;
+}
+let key: keyof Obj
+
+// T[k]
+let value: Obj['a']
+
+// T extends U
+
+interface Obj1 {
+    a: string;
+    b: number;
+    c: boolean;
+}
+
+
+// readonly
+type ReadonlyObj = Readonly<Obj1>
+// partial
+type PartialObj = Partial<Obj>
+// pick
+type PickObj = Pick<Obj1, 'a' | 'b'>
+// Record
+type RecordObj = Record<'x' | 'y', Obj1>
+
+
+// 条件类型
+// T extends U ? X : Y
+
+type TypeName<T> =
+    T extends string ? "string" :
+    T extends number ? "number" :
+    T extends boolean ? "boolean" :
+    T extends undefined ? "undefined" :
+    T extends Function ? "function" :
+    "object";
+
+type T1 = TypeName<string>
+type T2 = TypeName<number>
+
+// (A | B) extends U ? X : Y
+// (A extends U ? X : Y) | ( B extends U ? X : Y)
+
+type T3 = TypeName<string | string[]>
+
+// 类型过滤
+type Diff<T, U> = T extends U ? never : T
+type T4 = Diff<"a" | "b" | "c", "a" | "e">
+// Diff<"a" , "a"|"e"> | Diff<"b", "a" | "e"> | Diff<"c", "a" | "e">
+// never | b | c
+// b | c
+
+type NotNull<T> = Diff<T, undefined | null>
+type T5 = NotNull<string | number | undefined | null>
+
+// Exclude<T, U>
+// NotNullable<T>
+// Extract<T, U>
+type T6 = Extract<"a" | "b" | "c", "a" | "e">
+
+// ReturnType<T>
+type T7 = ReturnType<() => string>

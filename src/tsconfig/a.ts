@@ -1,0 +1,1 @@
+let s12: string = 'a'
