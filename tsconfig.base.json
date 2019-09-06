@@ -1,0 +1,15 @@
+{
+    "files": [
+        "src/tsconfig/a.ts"
+    ],
+    "include": [
+        "src/*"
+    ],
+    "exclude": [
+        "src/*.ts",
+        "src/namespace",
+        "src/es6",
+        "src/node",
+        "src/tpl"
+    ]
+}

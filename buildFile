@@ -1,0 +1,31 @@
+{
+  "bundle": {
+    "commonSourceDirectory": "/Users/shenyu/workspace/temp/ts-demo/",
+    "sourceFiles": [
+      "/Users/shenyu/workspace/temp/ts-demo/src/tsconfig/a.ts",
+      "/Users/shenyu/workspace/temp/ts-demo/src/01_datatype.ts",
+      "/Users/shenyu/workspace/temp/ts-demo/src/02_enum.ts",
+      "/Users/shenyu/workspace/temp/ts-demo/src/03_interface.ts",
+      "/Users/shenyu/workspace/temp/ts-demo/src/04_function.ts",
+      "/Users/shenyu/workspace/temp/ts-demo/src/05_class.ts",
+      "/Users/shenyu/workspace/temp/ts-demo/src/06_class-interface.ts",
+      "/Users/shenyu/workspace/temp/ts-demo/src/07_generics.ts",
+      "/Users/shenyu/workspace/temp/ts-demo/src/08_advanced.ts",
+      "/Users/shenyu/workspace/temp/ts-demo/src/09_merge.ts",
+      "/Users/shenyu/workspace/temp/ts-demo/src/es6/b.ts",
+      "/Users/shenyu/workspace/temp/ts-demo/src/es6/a.ts",
+      "/Users/shenyu/workspace/temp/ts-demo/src/es6/c.ts",
+      "/Users/shenyu/workspace/temp/ts-demo/src/index.ts"
+    ],
+    "dts": {
+      "sections": [
+        {
+          "pos": 0,
+          "end": 9000,
+          "kind": "text"
+        }
+      ]
+    }
+  },
+  "version": "3.5.3"
+}

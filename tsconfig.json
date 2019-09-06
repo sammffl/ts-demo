@@ -1,15 +1,26 @@
 {
-  "files": [
-    "src/tsconfig/a.ts"
-  ],
-  "include": [
-    "src/*"
-  ],
-  "exclude": [
-    "src/*.ts",
-    "src/namespace",
-    "src/es6",
-    "src/node",
-    "src/tpl"
-  ]
+  "extends": "./tsconfig.base",
+  "exclude": [],
+  "compileOnSave": true,
+  "compilerOptions": {
+    "incremental": true, // 增量编译
+    "tsBuildInfoFile": "./buildFile", // 增量编译文件的存储位置
+    "diagnostics": true, // 打印诊断信息
+    "outFile": "./app.js", // AMD合并打包
+    "target": "es5",
+    "lib": ["dom", "es5", "scripthost", "es2019.array"],
+    "allowJs": true,
+    "checkJs": true,
+    "outDir": "./out",
+    "rootDir": "./",
+
+    "declaration": true,
+    "declarationDir": "./d",
+    "emitDeclarationOnly": true,
+
+    "sourceMap": true,
+    "inlineSourceMap": true,
+    "typeRoots": [],
+    "types": []
+  }
 }

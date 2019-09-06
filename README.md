@@ -12,4 +12,5 @@
 - namespace写法 -> namespace/
 - 申明合并 -> 09_merge.ts
 - 声明文件 -> libs/
-- tsconfig配置 -> tsconfig.json
+- tsconfig配置(文件相关) -> tsconfig.base.json
+- tsconfig配置(编译相关) -> 

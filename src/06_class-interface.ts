@@ -33,7 +33,7 @@ let boy: Boy = {
 
 class Auto {
     state = 1
-    private state2 = 0
+    // private state2 = 0
 }
 
 interface AutoInterface extends Auto {
